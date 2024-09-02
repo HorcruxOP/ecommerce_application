@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 
+import 'package:ecommerce_application/services/blocs/home_page_bloc/home_page_bloc.dart';
 import 'package:ecommerce_application/services/blocs/wish_list_bloc/wish_list_bloc.dart';
 import 'package:ecommerce_application/services/models/product_model.dart';
 import 'package:ecommerce_application/utils/colors.dart';
@@ -39,6 +40,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           element.productId == widget.product.productId,
                     )) {
                   context.read<WishListBloc>().add(FetchWishListEvent());
+                  context
+                      .read<HomePageBloc>()
+                      .add(ProductLikedEvent(widget.product));
                 } else {
                   context
                       .read<WishListBloc>()

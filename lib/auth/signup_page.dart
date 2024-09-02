@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/auth/login_page.dart';
 import 'package:ecommerce_application/pages/home.dart';
 import 'package:ecommerce_application/services/blocs/auth_bloc/auth_bloc.dart';
 import 'package:ecommerce_application/services/functions/app_functions.dart';
@@ -75,7 +76,15 @@ class SignupPage extends StatelessWidget {
                       ),
                       TextSpan(
                         text: "Login",
-                        recognizer: TapGestureRecognizer()..onTap = () {},
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginPage(),
+                              ),
+                            );
+                          },
                         style: BTextStyle.body2Regular(context)
                             .copyWith(color: BAppColors.cyanColor),
                       ),
@@ -163,6 +172,7 @@ class SignupPage extends StatelessWidget {
                 BButton(
                   color: BAppColors.getSecondaryButtonColor(context),
                   iconColor: BAppColors.cyanColor,
+                  textColor: BAppColors.getTextColor(context),
                   text: "Signup with Google",
                   icon: true,
                   elevation: 0,

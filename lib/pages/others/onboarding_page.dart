@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:ecommerce_application/auth/login_page.dart';
 import 'package:ecommerce_application/auth/signup_page.dart';
 import 'package:ecommerce_application/utils/colors.dart';
@@ -137,7 +139,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     _controller.animateToPage(index2,
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut);
-                    // await DbFunctions.addproduct();
                   },
                 )
               : Row(

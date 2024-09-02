@@ -53,9 +53,12 @@ class WishlistWidget extends StatelessWidget {
                         style: BTextStyle.captionSemiBold(context),
                       ),
                       Text(
-                        "\$ ${product.price}",
-                        style: BTextStyle.captionRegular(context)
-                            .copyWith(color: BAppColors.grey150Color),
+                        "\$ ${product.price + 200.00}",
+                        style: BTextStyle.captionRegular(context).copyWith(
+                          color: BAppColors.grey150Color,
+                          decoration: TextDecoration.lineThrough,
+                          decorationColor: BAppColors.grey150Color,
+                        ),
                       ),
                     ],
                   ),

@@ -15,11 +15,13 @@ class BAppbar extends StatelessWidget implements PreferredSizeWidget {
       this.actions,
       this.backgroundColor,
       this.shadowColor,
-      required this.isBackIcon});
+      required this.isBackIcon,
+      this.backOnTap});
   final String title;
   final List<Widget>? actions;
   final Color? backgroundColor, shadowColor;
   final bool isBackIcon;
+  final Function()? backOnTap;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -34,9 +36,10 @@ class BAppbar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           if (isBackIcon)
             GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: backOnTap ??
+                  () {
+                    Navigator.pop(context);
+                  },
               child: ImageFiltered(
                 imageFilter: ImageFilter.blur(sigmaX: 1),
                 child: SvgPicture.asset(

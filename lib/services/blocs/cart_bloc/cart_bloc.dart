@@ -9,17 +9,38 @@ part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
   List<CartModel> cartList = [];
+  double total = 0;
   CartBloc() : super(CartInitial()) {
     on<FetchCartEvent>(fetchCartEvent);
     add(FetchCartEvent());
     on<DeleteProductFromCartEvent>(deleteProductFromCartEvent);
+    on<CalculateCartTotalEvent>(calculateCartTotalEvent);
+    on<PaymentInitiatedEvent>(paymentInitiatedEvent);
   }
 
   FutureOr<void> fetchCartEvent(
       FetchCartEvent event, Emitter<CartState> emit) async {
     try {
+      total = 0;
       emit(CartLoadingState());
       cartList = await CartFunctions.fetchCart();
+      for (var element in cartList) {
+        total += (element.price) * element.quantity;
+      }
+      emit(CartLoadedState());
+    } catch (e) {
+      emit(CartErrorState(e.toString()));
+    }
+  }
+
+  FutureOr<void> calculateCartTotalEvent(
+      CalculateCartTotalEvent event, Emitter<CartState> emit) async {
+    try {
+      total = 0;
+      cartList = await CartFunctions.fetchCart();
+      for (var element in cartList) {
+        total += (element.price) * element.quantity;
+      }
       emit(CartLoadedState());
     } catch (e) {
       emit(CartErrorState(e.toString()));
@@ -33,6 +54,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       cartList = await CartFunctions.fetchCart();
       emit(ProductDeletedState());
     } catch (e) {
+      emit(CartErrorState(e.toString()));
+    }
+  }
+
+  FutureOr<void> paymentInitiatedEvent(
+      PaymentInitiatedEvent event, Emitter<CartState> emit) async {
+    try {} catch (e) {
       emit(CartErrorState(e.toString()));
     }
   }

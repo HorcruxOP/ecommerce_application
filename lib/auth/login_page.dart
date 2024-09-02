@@ -1,3 +1,4 @@
+import 'package:ecommerce_application/auth/signup_page.dart';
 import 'package:ecommerce_application/pages/home.dart';
 import 'package:ecommerce_application/pages/profile_pages/privacy_policy_page.dart';
 import 'package:ecommerce_application/pages/profile_pages/t_and_c_page.dart';
@@ -49,7 +50,15 @@ class LoginPage extends StatelessWidget {
                       ),
                       TextSpan(
                         text: "Signup",
-                        recognizer: TapGestureRecognizer()..onTap = () {},
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignupPage(),
+                              ),
+                            );
+                          },
                         style: BTextStyle.body2Regular(context)
                             .copyWith(color: BAppColors.cyanColor),
                       ),

@@ -27,7 +27,7 @@ class ProductNameHeader extends StatelessWidget {
               style: BTextStyle.heading3Bold(context),
             ),
             Text(
-              "\$ 20.00",
+              "\$ ${product.price + 200.00}",
               style: BTextStyle.body2Medium(context).copyWith(
                 color: BAppColors.grey150Color,
                 decoration: TextDecoration.lineThrough,

@@ -1,6 +1,9 @@
+import 'package:ecommerce_application/pages/others/checkout_page.dart';
+import 'package:ecommerce_application/services/blocs/cart_bloc/cart_bloc.dart';
 import 'package:ecommerce_application/utils/styles.dart';
 import 'package:ecommerce_application/widgets/global/b_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartValueDetailsWidget extends StatelessWidget {
   const CartValueDetailsWidget({super.key});
@@ -27,7 +30,7 @@ class CartValueDetailsWidget extends StatelessWidget {
                 style: BTextStyle.captionRegular(context),
               ),
               Text(
-                "Order Info",
+                "\$ ${context.watch<CartBloc>().total.toStringAsFixed(2)}",
                 style: BTextStyle.captionRegular(context),
               ),
             ],
@@ -40,7 +43,7 @@ class CartValueDetailsWidget extends StatelessWidget {
                 style: BTextStyle.captionRegular(context),
               ),
               Text(
-                "Order Info",
+                "\$ 10.00",
                 style: BTextStyle.captionRegular(context),
               ),
             ],
@@ -53,7 +56,7 @@ class CartValueDetailsWidget extends StatelessWidget {
                 style: BTextStyle.body1Medium(context),
               ),
               Text(
-                "Order Info",
+                "\$ ${(context.watch<CartBloc>().total + 10.00).toStringAsFixed(2)}",
                 style: BTextStyle.body1Medium(context),
               ),
             ],
@@ -61,7 +64,14 @@ class CartValueDetailsWidget extends StatelessWidget {
           BButton(
             icon: false,
             text: "Checkout",
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CheckoutPage(),
+                ),
+              );
+            },
           )
         ],
       ),

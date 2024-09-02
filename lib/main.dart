@@ -6,6 +6,8 @@ import 'package:ecommerce_application/services/blocs/categories_bloc/categories_
 import 'package:ecommerce_application/services/blocs/home_bloc/home_bloc.dart';
 import 'package:ecommerce_application/services/blocs/home_page_bloc/home_page_bloc.dart';
 import 'package:ecommerce_application/services/blocs/wish_list_bloc/wish_list_bloc.dart';
+import 'package:ecommerce_application/utils/app_theme.dart';
+// ignore: unused_import
 import 'package:ecommerce_application/utils/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -46,37 +48,12 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: "QuickMart",
             home: const SplashScreen(),
             themeMode: context.watch<HomeBloc>().themeMode,
-            darkTheme: ThemeData(
-              fontFamily: "PlusJakartaSans",
-              brightness: Brightness.dark,
-              appBarTheme:
-                  const AppBarTheme(backgroundColor: BAppColors.blackColor),
-              scaffoldBackgroundColor: BAppColors.blackColor,
-              bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                backgroundColor: BAppColors.blackColor,
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: BAppColors.whiteColor,
-                unselectedItemColor: BAppColors.grey150Color,
-                landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
-              ),
-            ),
-            theme: ThemeData(
-              fontFamily: "PlusJakartaSans",
-              brightness: Brightness.light,
-              scaffoldBackgroundColor: BAppColors.whiteColor,
-              appBarTheme:
-                  const AppBarTheme(backgroundColor: BAppColors.whiteColor),
-              bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                backgroundColor: BAppColors.whiteColor,
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: BAppColors.blackColor,
-                unselectedItemColor: BAppColors.grey150Color,
-                landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
-              ),
-            ),
+            darkTheme: AppTheme.darkTheme,
+            theme: AppTheme.lightTheme,
           );
         },
       ),

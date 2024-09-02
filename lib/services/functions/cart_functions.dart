@@ -40,6 +40,26 @@ class CartFunctions {
     }
   }
 
+  static Future<void> deleteCart() async {
+    try {
+      var data = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(AuthFunctions.user!.uid)
+          .collection("cartList")
+          .get();
+      for (var doc in data.docs) {
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(AuthFunctions.user!.uid)
+            .collection("cartList")
+            .doc(doc.id)
+            .delete();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   static Future<void> addToCart(CartModel product) async {
     try {
       await FirebaseFirestore.instance

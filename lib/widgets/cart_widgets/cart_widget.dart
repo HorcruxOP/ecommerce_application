@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_application/services/blocs/cart_bloc/cart_bloc.dart';
 import 'package:ecommerce_application/services/blocs/home_page_bloc/home_page_bloc.dart';
 import 'package:ecommerce_application/services/blocs/wish_list_bloc/wish_list_bloc.dart';
 import 'package:ecommerce_application/services/functions/cart_functions.dart';
@@ -112,9 +113,12 @@ class CartWidget extends StatelessWidget {
                       style: BTextStyle.captionSemiBold(context),
                     ),
                     Text(
-                      "\$ ${product.price}",
-                      style: BTextStyle.captionRegular(context)
-                          .copyWith(color: BAppColors.grey150Color),
+                      "\$ ${product.price + 200.00}",
+                      style: BTextStyle.captionRegular(context).copyWith(
+                        color: BAppColors.grey150Color,
+                        decoration: TextDecoration.lineThrough,
+                        decorationColor: BAppColors.grey150Color,
+                      ),
                     ),
                   ],
                 ),
@@ -125,6 +129,7 @@ class CartWidget extends StatelessWidget {
                       quantityFrom: product.quantity,
                       onPressed: (value) {
                         CartFunctions.updateQuantity(product, value, index);
+                        context.read<CartBloc>().add(CalculateCartTotalEvent());
                       },
                     ),
                     CartDeleteButton(product: product),

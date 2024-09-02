@@ -62,7 +62,7 @@ class ProductGridDetailsWidget extends StatelessWidget {
           style: BTextStyle.captionSemiBold(context),
         ),
         Text(
-          "\$126.00",
+          "\$ ${product.price + 200.00}",
           style: BTextStyle.captionSemiBold(context).copyWith(
               color: BAppColors.grey100Color,
               decoration: TextDecoration.lineThrough,

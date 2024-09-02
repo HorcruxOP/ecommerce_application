@@ -43,4 +43,5 @@ class Images {
   static const String eyeIcon = "assets/icons/eye.svg";
   static const String emptyWishlistIcon = "assets/icons/empty_wishlist.png";
   static const String emptyCartIcon = "assets/icons/empty_cart.png";
+  static const String orderPlacedIcon = "assets/icons/order-placed.png";
 }

@@ -17,10 +17,7 @@ void showCustomSnackbar(
     ),
   );
 
-  // Add the overlay entry to the overlay
   overlay.insert(overlayEntry);
-
-  // Remove the overlay entry after a duration
   Future.delayed(const Duration(seconds: 2), () {
     overlayEntry.remove();
   });

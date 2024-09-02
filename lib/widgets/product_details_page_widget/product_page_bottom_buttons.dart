@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/services/blocs/cart_bloc/cart_bloc.dart';
+import 'package:ecommerce_application/services/functions/app_functions.dart';
 import 'package:ecommerce_application/services/functions/cart_functions.dart';
 import 'package:ecommerce_application/services/models/cart_model.dart';
 import 'package:ecommerce_application/services/models/product_model.dart';
@@ -64,6 +65,8 @@ class ProductPageBottomButtons extends StatelessWidget {
                 );
                 CartFunctions.addToCart(cartModel);
                 context.read<CartBloc>().add(FetchCartEvent());
+                showCustomSnackbar(
+                    context, "Added to cart", BAppColors.cyanColor);
               },
             ),
           ),
